@@ -1,0 +1,7 @@
+.DS_Store
+input/*
+!input/.gitkeep
+!input/test.sql  
+output/*
+!output/.gitkeep 
+info/
