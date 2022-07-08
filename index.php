@@ -1,5 +1,5 @@
 <?php
-$frontent_version = "1.0";
+$frontent_version = "1.1";
 
 // configure input and output folders
 $settings = array(

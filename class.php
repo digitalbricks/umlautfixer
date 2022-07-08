@@ -1,7 +1,7 @@
 <?php
 class Fixer {
 
-    private $version = "0.6";
+    private $version = "0.7";
 
     private $file = false;
     private $fileexists = false;
