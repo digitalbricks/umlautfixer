@@ -198,15 +198,25 @@ class Fixer {
             // read input file to variable
             $filecontents = file_get_contents($this->in_file_path);
 
-            // do replacements
+            // create two intermediate arrays for later usage with str_replace
+            $search = array();
+            $replace = array();
             foreach($this->replacements as $old=>$new){
-                if($filecontents = str_replace($old,$new,$filecontents,$counter)){
-                    $this->replaced_count = $this->replaced_count + intval($counter);
-                };
+                    array_push($search, $old);
+                    array_push($replace, $new);
             }
 
-            // write to ouput file
-            file_put_contents($this->out_file_path.$this->processed_suffix, $filecontents);
+            // do replacement
+            if($filecontents = str_replace($search,$replace,$filecontents,$counter)){
+                $this->replaced_count = intval($counter);
+            };
+
+            // write to ouput file if there were replacements
+            if($this->replaced_count>0){
+                file_put_contents($this->out_file_path.$this->processed_suffix, $filecontents);
+            }
+
+            
 
         } else {
             throw new Exception("File does not exist in input folder ({$this->in_folder}).");

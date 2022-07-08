@@ -165,7 +165,12 @@ function sanitizeFilename(string $file){
 
                 <?php if($fixer->fileExists()):?>
                     <?php $fixer->fixUmlauts(); ?>
-                    File <strong><?=$fixer->getFile()?></strong> processed (<?=$fixer->getCount()?> replacements). See output folder (<strong><?=$settings['outputDirectory']?></strong>).
+                    <?php if($fixer->getCount()>0):?>
+                        File <strong><?=$fixer->getFile()?></strong> processed (<?=$fixer->getCount()?> replacements). See output folder (<strong><?=$settings['outputDirectory']?></strong>).
+                    <?php else:?>
+                        <strong>No chars to replace found in input file!</strong>
+                    <?php endif;?>
+                    
                 <?php else: ?>
                         <strong>File "<?=$fixer->getFile()?>" not found in directory "<?=$settings['inputDirectory']?>"</strong>
                 <?php endif;?>
